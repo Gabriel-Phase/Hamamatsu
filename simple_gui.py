@@ -13,6 +13,9 @@ step_dictonary = {
     i: {"intensity": 0, "time":"00:00:00", "pos":0, "step": "step "+ str(i+1)}
     for i in range(0, 5)
 }
+pos_dictonary = {
+    "pos": 0
+}
 
 def func_ch_button(indicator, self):
     if indicator.isChecked():
@@ -106,21 +109,21 @@ def update_time(self):
             func_next_step_control(self)
 
 def func_next_step_control(self):
-    if (step_dictonary[0]["pos"] > 4):
+    if (pos_dictonary["pos"] > 4):
         print("Step Procedure Completed")
         self.step_indicator.setChecked(False)
     else:
-        if (step_dictonary[step_dictonary[0]["pos"]]["intensity"] == 0):
+        if (step_dictonary[pos_dictonary["pos"]]["intensity"] == 0):
             print("Skipping step Ending Early")
             self.step_indicator.setChecked(False)
         else:    
-            self.step_display.setText(step_dictonary[step_dictonary[0]["pos"]]["step"])
-            func_set_time_display(self, step_dictonary[step_dictonary[0]["pos"]]["time"])
-            print(step_dictonary[step_dictonary[0]["pos"]]["time"])
-            self.intensity_control.setValue(step_dictonary[step_dictonary[0]["pos"]]["intensity"])
-            print(step_dictonary[step_dictonary[0]["pos"]]["intensity"])
+            self.step_display.setText(step_dictonary[pos_dictonary["pos"]]["step"])
+            func_set_time_display(self, step_dictonary[pos_dictonary["pos"]]["time"])
+            print(step_dictonary[pos_dictonary["pos"]]["time"])
+            self.intensity_control.setValue(step_dictonary[pos_dictonary["pos"]]["intensity"])
+            print(step_dictonary[pos_dictonary["pos"]]["intensity"])
             self.timer.start()
-        step_dictonary[0]["pos"] += 1
+        pos_dictonary["pos"] += 1
 
 def func_manual_mode(self):
     if(self.manual_box.isChecked()):
@@ -131,7 +134,7 @@ def func_manual_mode(self):
         controller_object.func_program_control_enable()
 
 def func_start_step_control(self):
-    step_dictonary[0]["pos"] = 0
+    pos_dictonary["pos"] = 0
     
     step1_intensity_value = self.step1_intensity.value()
     step2_intensity_value = self.step2_intensity.value()
@@ -165,7 +168,7 @@ def func_start_step_control(self):
     step_dictonary[4]["intensity"] = int(step5_intensity_value)
     step_dictonary[4]["time"] = step5_time
 
-    step_dictonary[0]["pos"] += 1
+    pos_dictonary["pos"] += 1
     
     func_set_time_display(self, step1_time)
     self.intensity_control.setValue(int(step1_intensity_value))
@@ -174,7 +177,28 @@ def func_start_step_control(self):
     
 def func_time_comboBox(self):
     
-    print(self.time_comboBox.currentIndexChanged())
+    current_index = self.time_comboBox.currentIndex()
+    if(current_index == 0):
+        self.timer_input.setText("00:03:00")
+    elif(current_index == 1):
+        self.timer_input.setText("00:05:00")
+    elif(current_index == 2):
+        self.timer_input.setText("00:20:00")
+
+def func_step_comboBox(self):
+    current_index = self.step_comboBox.currentIndex()
+
+    if(current_index == 0):
+        step1_intensity_value = self.step1_intensity.setValue(100)
+        step2_intensity_value = self.step2_intensity.setValue(50)
+        step3_intensity_value = self.step3_intensity.setValue(25)
+        step4_intensity_value = self.step4_intensity.setValue(20)
+        step5_intensity_value = self.step5_intensity.setValue(10)
+        step1_time_value = self.step1_time.setText("0:01:00")
+        step2_time_value = self.step2_time.setText("0:01:00")
+        step3_time_value = self.step3_time.setText("0:01:00")
+        step4_time_value = self.step4_time.setText("0:01:00")
+        tep5_time_value = self.step5_time.setText("0:01:00")
     
 class MainWindow(QtWidgets.QMainWindow):
     def __init__(self):
@@ -204,6 +228,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.manual_box.clicked.connect(lambda: func_manual_mode(self))
         self.step_control_button.clicked.connect(lambda: func_start_step_control(self))
         self.time_comboBox.currentIndexChanged.connect(lambda: func_time_comboBox(self))
+        self.step_comboBox.currentIndexChanged.connect(lambda: func_step_comboBox(self))
         
         self.timer = QTimer(self)
         self.timer.setInterval(1000)  # 1 second

@@ -47,8 +47,16 @@ color: rgb(146, 144, 141);</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(59, 56, 49);
-color: rgb(123, 121, 116);</string>
+     <string notr="true">QPushButton{
+	background-color: rgb(19, 38, 77);
+	color: rgb(183, 225, 161);
+   }
+
+ QPushButton::hover {
+	background-color: rgb(181, 234, 170);
+	color: rgb(0, 0, 0);
+   }
+</string>
     </property>
     <property name="text">
      <string>On/OFF</string>
@@ -141,8 +149,16 @@ color: rgb(255, 255, 255);</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(59, 56, 49);
-color: rgb(123, 121, 116);</string>
+     <string notr="true">QPushButton{
+	background-color: rgb(19, 38, 77);
+	color: rgb(183, 225, 161);
+   }
+
+ QPushButton::hover {
+	background-color: rgb(181, 234, 170);
+	color: rgb(0, 0, 0);
+   }
+</string>
     </property>
     <property name="text">
      <string>Confirm</string>
@@ -262,8 +278,16 @@ selection-background-color: rgb(0, 170, 0);</string>
      <item row="1" column="0">
       <widget class="QPushButton" name="ch2_button">
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(59, 56, 49);
-color: rgb(123, 121, 116);</string>
+        <string notr="true">QPushButton{
+	background-color: rgb(19, 38, 77);
+	color: rgb(183, 225, 161);
+   }
+
+ QPushButton::hover {
+	background-color: rgb(181, 234, 170);
+	color: rgb(0, 0, 0);
+   }
+</string>
        </property>
        <property name="text">
         <string>CH2</string>
@@ -286,8 +310,16 @@ color: rgb(123, 121, 116);</string>
      <item row="2" column="0">
       <widget class="QPushButton" name="ch3_button">
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(59, 56, 49);
-color: rgb(123, 121, 116);</string>
+        <string notr="true">QPushButton{
+	background-color: rgb(19, 38, 77);
+	color: rgb(183, 225, 161);
+   }
+
+ QPushButton::hover {
+	background-color: rgb(181, 234, 170);
+	color: rgb(0, 0, 0);
+   }
+</string>
        </property>
        <property name="text">
         <string>CH3</string>
@@ -310,8 +342,16 @@ color: rgb(123, 121, 116);</string>
      <item row="3" column="0">
       <widget class="QPushButton" name="ch4_button">
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(59, 56, 49);
-color: rgb(123, 121, 116);</string>
+        <string notr="true">QPushButton{
+	background-color: rgb(19, 38, 77);
+	color: rgb(183, 225, 161);
+   }
+
+ QPushButton::hover {
+	background-color: rgb(181, 234, 170);
+	color: rgb(0, 0, 0);
+   }
+</string>
        </property>
        <property name="text">
         <string>CH4</string>
@@ -450,8 +490,16 @@ color: rgb(146, 144, 141);</string>
      <item row="1" column="5">
       <widget class="QPushButton" name="step_control_button">
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(59, 56, 49);
-color: rgb(123, 121, 116);</string>
+        <string notr="true">QPushButton{
+	background-color: rgb(19, 38, 77);
+	color: rgb(183, 225, 161);
+   }
+
+ QPushButton::hover {
+	background-color: rgb(181, 234, 170);
+	color: rgb(0, 0, 0);
+   }
+</string>
        </property>
        <property name="text">
         <string>Confirm</string>
@@ -516,8 +564,16 @@ color: rgb(123, 121, 116);</string>
      <item row="0" column="0">
       <widget class="QPushButton" name="saveIntensity1_button">
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(59, 56, 49);
-color: rgb(123, 121, 116);</string>
+        <string notr="true">QPushButton{
+	background-color: rgb(19, 38, 77);
+	color: rgb(183, 225, 161);
+   }
+
+ QPushButton::hover {
+	background-color: rgb(181, 234, 170);
+	color: rgb(0, 0, 0);
+   }
+</string>
        </property>
        <property name="text">
         <string>Save </string>
@@ -527,8 +583,16 @@ color: rgb(123, 121, 116);</string>
      <item row="0" column="1">
       <widget class="QPushButton" name="setIntensity1_button">
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(59, 56, 49);
-color: rgb(123, 121, 116);</string>
+        <string notr="true">QPushButton{
+	background-color: rgb(19, 38, 77);
+	color: rgb(183, 225, 161);
+   }
+
+ QPushButton::hover {
+	background-color: rgb(181, 234, 170);
+	color: rgb(0, 0, 0);
+   }
+</string>
        </property>
        <property name="text">
         <string>0%</string>
@@ -538,8 +602,16 @@ color: rgb(123, 121, 116);</string>
      <item row="1" column="0">
       <widget class="QPushButton" name="saveIntensity2_button">
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(59, 56, 49);
-color: rgb(123, 121, 116);</string>
+        <string notr="true">QPushButton{
+	background-color: rgb(19, 38, 77);
+	color: rgb(183, 225, 161);
+   }
+
+ QPushButton::hover {
+	background-color: rgb(181, 234, 170);
+	color: rgb(0, 0, 0);
+   }
+</string>
        </property>
        <property name="text">
         <string>Save </string>
@@ -549,8 +621,16 @@ color: rgb(123, 121, 116);</string>
      <item row="1" column="1">
       <widget class="QPushButton" name="setIntensity2_button">
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(59, 56, 49);
-color: rgb(123, 121, 116);</string>
+        <string notr="true">QPushButton{
+	background-color: rgb(19, 38, 77);
+	color: rgb(183, 225, 161);
+   }
+
+ QPushButton::hover {
+	background-color: rgb(181, 234, 170);
+	color: rgb(0, 0, 0);
+   }
+</string>
        </property>
        <property name="text">
         <string>10%</string>
@@ -560,8 +640,16 @@ color: rgb(123, 121, 116);</string>
      <item row="2" column="0">
       <widget class="QPushButton" name="saveIntensity3_button">
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(59, 56, 49);
-color: rgb(123, 121, 116);</string>
+        <string notr="true">QPushButton{
+	background-color: rgb(19, 38, 77);
+	color: rgb(183, 225, 161);
+   }
+
+ QPushButton::hover {
+	background-color: rgb(181, 234, 170);
+	color: rgb(0, 0, 0);
+   }
+</string>
        </property>
        <property name="text">
         <string>Save </string>
@@ -571,8 +659,16 @@ color: rgb(123, 121, 116);</string>
      <item row="2" column="1">
       <widget class="QPushButton" name="setIntensity3_button">
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(59, 56, 49);
-color: rgb(123, 121, 116);</string>
+        <string notr="true">QPushButton{
+	background-color: rgb(19, 38, 77);
+	color: rgb(183, 225, 161);
+   }
+
+ QPushButton::hover {
+	background-color: rgb(181, 234, 170);
+	color: rgb(0, 0, 0);
+   }
+</string>
        </property>
        <property name="text">
         <string>50%</string>
@@ -582,8 +678,16 @@ color: rgb(123, 121, 116);</string>
      <item row="3" column="0">
       <widget class="QPushButton" name="saveIntensity4_button">
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(59, 56, 49);
-color: rgb(123, 121, 116);</string>
+        <string notr="true">QPushButton{
+	background-color: rgb(19, 38, 77);
+	color: rgb(183, 225, 161);
+   }
+
+ QPushButton::hover {
+	background-color: rgb(181, 234, 170);
+	color: rgb(0, 0, 0);
+   }
+</string>
        </property>
        <property name="text">
         <string>Save </string>
@@ -593,8 +697,16 @@ color: rgb(123, 121, 116);</string>
      <item row="3" column="1">
       <widget class="QPushButton" name="setIntensity4_button">
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(59, 56, 49);
-color: rgb(123, 121, 116);</string>
+        <string notr="true">QPushButton{
+	background-color: rgb(19, 38, 77);
+	color: rgb(183, 225, 161);
+   }
+
+ QPushButton::hover {
+	background-color: rgb(181, 234, 170);
+	color: rgb(0, 0, 0);
+   }
+</string>
        </property>
        <property name="text">
         <string>100%</string>
@@ -618,15 +730,23 @@ color: rgb(123, 121, 116);</string>
     <property name="styleSheet">
      <string notr="true">QComboBox{
 	background-color: rgb(19, 38, 77);
-	color: rgb(255, 255, 255);
 	border-color: rgb(181, 234, 170);
-}</string>
+	border-width: 1px;
+    border-style: solid;
+	
+	color: rgb(255, 255, 255);
+	padding: 1px 0px 1px 3px;
+}
+QComboBox QAbstractItemView {
+	color: rgb(255, 255, 255);
+            }</string>
     </property>
-    <item>
-     <property name="text">
-      <string/>
-     </property>
-    </item>
+    <property name="currentText">
+     <string/>
+    </property>
+    <property name="placeholderText">
+     <string>Time Selection</string>
+    </property>
     <item>
      <property name="text">
       <string>3 minutes</string>
@@ -640,6 +760,38 @@ color: rgb(123, 121, 116);</string>
     <item>
      <property name="text">
       <string>20 minutes</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QComboBox" name="step_comboBox">
+    <property name="geometry">
+     <rect>
+      <x>530</x>
+      <y>340</y>
+      <width>161</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QComboBox{
+	background-color: rgb(19, 38, 77);
+	border-color: rgb(181, 234, 170);
+	border-width: 1px;
+    border-style: solid;
+	
+	color: rgb(255, 255, 255);
+	padding: 1px 0px 1px 3px;
+}
+QComboBox QAbstractItemView {
+	color: rgb(255, 255, 255);
+            }</string>
+    </property>
+    <property name="placeholderText">
+     <string>Procedure Selection</string>
+    </property>
+    <item>
+     <property name="text">
+      <string>W-Band Bulks</string>
      </property>
     </item>
    </widget>
