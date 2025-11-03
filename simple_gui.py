@@ -10,10 +10,12 @@ try:
 except Exception as e:
     print("unable to connect to the UV controller")
 
+#contains cure step 1-5 information such as time and intensity
 step_dictonary = {
     i: {"intensity": 0, "time":"00:00:00", "pos":0, "step": "STEP "+ str(i+1)}
     for i in range(0, 5)
 }
+#stores the current postion of cure step
 pos_dictonary = {
     "pos": 0
 }
@@ -26,16 +28,19 @@ pos_dictonary = {
         
 #         indicator.setChecked(True)
 
+#function for the intensity button (100%) that sets the current intensity to that buttons value
 def func_setIntensity_button(intensity_control, intensity_button):
     intensity_value = intensity_button.text()
     intensity_value = intensity_value.strip("%")
     print(intensity_value)
     intensity_control.setValue(int(intensity_value))
     
+#function for the save button that sets the intensity button setting the value base on the current intensity displayed
 def func_saveIntensity_button(intensity_control, intensity_button):
     value = intensity_control.value()
     intensity_button.setText(str(value) + "%")
 
+#function for the on/off button that turns on the UV controller
 def func_uv_onOff_button(self, controller_object):
     intensity_control = self.intensity_control
     indicator = self.onOff_indicator
@@ -55,8 +60,8 @@ def func_uv_onOff_button(self, controller_object):
         uv_list = func_check_ch(self, uv_list)
         controller_object.func_uv_on(uv_list)
 
+#function that returns a list that determines which uv heads need to be turned on
 def func_check_ch(self, uv_list):
-
     if (self.ch1_button.isChecked() and self.ch2_button.isChecked() and self.ch3_button.isChecked() and self.ch4_button.isChecked()):
         uv_list.append(0)
     else:
@@ -72,8 +77,8 @@ def func_check_ch(self, uv_list):
     
     return uv_list
 
+#function that sets and displays the timer, as well I start the timer
 def func_setTimer(self):
-
     entered_time = self.timer_input.text()
 
     print(entered_time)
@@ -84,8 +89,8 @@ def func_setTimer(self):
     
     start_timer(self)
 
+#function that handles the time being displayed
 def func_set_time_display(self, time_list):
-
     if(len(time_list) == 3):
         hours = time_list[0]
         min = time_list[1]
@@ -94,56 +99,46 @@ def func_set_time_display(self, time_list):
     self.current_time = QTime(int(hours), int(min), int(sec))
     self.timer_display.setText(self.current_time.toString("hh:mm:ss"))
 
+#function that runs the timer
 def start_timer(self):
     # func_uv_onOff_button(self, controller_object)
     self.timer.start()
 
+#function that updates the time and signals the next time if using uv step cure
 def update_time(self):
     self.current_time = self.current_time.addSecs(-1)
     self.timer_display.setText(self.current_time.toString("hh:mm:ss"))
   
     if(self.current_time.toString("hh:mm:ss") == "00:00:00"):
-        print("TIMER HIT")
         # func_uv_onOff_button(self, controller_object)
         self.timer.stop()
         if(self.step_indicator.isChecked()):
             func_next_step_control(self)
 
+#function that continues the next step cure process
 def func_next_step_control(self):
     if (pos_dictonary["pos"] > 4):
         print("Step Procedure Completed")
         self.step_indicator.setChecked(False)
-        
-        orginal_style = self.intensity_control.styleSheet()
-        orginal_style2 = self.timer_input.styleSheet()
-        color_widget = getattr(self, f"step{pos_dictonary['pos']}_intensity")
-        color_widget.setStyleSheet(orginal_style)
-        color_widget = getattr(self, f"step{pos_dictonary['pos']}_time")
-        color_widget.setStyleSheet(orginal_style2)
+
+        revert_color_change(self, pos_dictonary['pos'])
     else:
         if (step_dictonary[pos_dictonary["pos"]]["intensity"] == 0):
-            print("Skipping step Ending Early")
+            print("Skipping Step Ending Early")
             self.step_indicator.setChecked(False)
         else:
-            orginal_style = self.intensity_control.styleSheet()
-            orginal_style2 = self.timer_input.styleSheet()
-            color_widget = getattr(self, f"step{pos_dictonary['pos']}_intensity")
-            color_widget.setStyleSheet(orginal_style)
-            color_widget = getattr(self, f"step{pos_dictonary['pos']}_time")
-            color_widget.setStyleSheet(orginal_style2)
+            revert_color_change(self, pos_dictonary['pos'])
 
             self.step_display.setText(step_dictonary[pos_dictonary["pos"]]["step"])
             func_set_time_display(self, step_dictonary[pos_dictonary["pos"]]["time"])
             self.intensity_control.setValue(step_dictonary[pos_dictonary["pos"]]["intensity"])
             self.timer.start()
 
-            color_widget = getattr(self, f"step{pos_dictonary['pos']+1}_intensity")
-            color_widget.setStyleSheet("background-color: rgb(181, 234, 170); color: rgb(0, 0, 0);")
-            color_widget = getattr(self, f"step{pos_dictonary['pos']+1}_time")
-            color_widget.setStyleSheet("background-color: rgb(181, 234, 170); color: rgb(0, 0, 0);")
+            color_change(self, pos_dictonary['pos']+1)
 
         pos_dictonary["pos"] += 1
 
+#function that switches between gui mode to manual mode
 def func_manual_mode(self):
     if(self.manual_box.isChecked()):
         print("Going Manual, Disabling GUI")
@@ -152,8 +147,8 @@ def func_manual_mode(self):
         print("Going Program mode, enabling GUI") 
         controller_object.func_program_control_enable()
 
+#function that begins the process of the step cure
 def func_start_step_control(self):
-
     pos_dictonary["pos"] = 0
     self.step_indicator.setChecked(True)
 
@@ -170,15 +165,27 @@ def func_start_step_control(self):
     self.intensity_control.setValue(int(self.step1_intensity.value()))
     self.step_display.setText( step_dictonary[0]["step"])
 
-    color_widget = getattr(self, f"step{pos_dictonary['pos']}_intensity")
-    color_widget.setStyleSheet("background-color: rgb(181, 234, 170); color: rgb(0, 0, 0);")
-    color_widget = getattr(self, f"step{pos_dictonary['pos']}_time")
-    color_widget.setStyleSheet("background-color: rgb(181, 234, 170); color: rgb(0, 0, 0);")
+    color_change(self, pos_dictonary['pos'])
 
     start_timer(self)  
-    
-def func_time_comboBox(self):
-    
+
+def color_change(self, index):
+    color_widget = getattr(self, f"step{index}_intensity")
+    color_widget.setStyleSheet("background-color: rgb(181, 234, 170); color: rgb(0, 0, 0);")
+    color_widget = getattr(self, f"step{index}_time")
+    color_widget.setStyleSheet("background-color: rgb(181, 234, 170); color: rgb(0, 0, 0);")
+
+def revert_color_change(self, index):
+    orginal_style = self.intensity_control.styleSheet()
+    orginal_style2 = self.timer_input.styleSheet()
+    color_widget = getattr(self, f"step{index}_intensity")
+    color_widget.setStyleSheet(orginal_style)
+    color_widget = getattr(self, f"step{index}_time")
+    color_widget.setStyleSheet(orginal_style2)
+
+
+#function for the time combobox    
+def func_time_comboBox(self): 
     current_index = self.time_comboBox.currentIndex()
     if(current_index == 0):
         self.timer_input.setText("00:03:00")
@@ -187,11 +194,13 @@ def func_time_comboBox(self):
     elif(current_index == 2):
         self.timer_input.setText("00:20:00")
 
+#function that opens the save_procedure json file
 def func_open_json():
     with open("saved_procedure.json") as file:
         data = json.load(file)
     return data
 
+#function that updates the cure process intensity and time based on which combo box is choosen
 def func_step_comboBox(self):
     current_index = self.step_comboBox.currentIndex()
 
@@ -215,6 +224,7 @@ def func_step_comboBox(self):
         self.step4_time.setText(data[str(current_index)]["step_4_time"])
         self.step5_time.setText(data[str(current_index)]["step_5_time"])
 
+#function that saves the procedure in the json file and adds it into the procedure combo box
 def func_save_procedure(self):
 
     new_data = {
@@ -232,6 +242,7 @@ def func_save_procedure(self):
         "step_5_time": self.step5_time.text()
         }
     }
+
     self.step_comboBox.addItem(new_data[str(self.step_comboBox.count())]["procedure"])
    
     with open("saved_procedure.json", "r") as file:
@@ -288,7 +299,6 @@ class MainWindow(QtWidgets.QMainWindow):
         self.manual_box.clicked.connect(lambda: func_manual_mode(self))
         self.step_control_button.clicked.connect(lambda: func_start_step_control(self))
 
-
         self.time_comboBox.currentIndexChanged.connect(lambda: func_time_comboBox(self))
         self.step_comboBox.currentIndexChanged.connect(lambda: func_step_comboBox(self))
 
@@ -299,10 +309,8 @@ class MainWindow(QtWidgets.QMainWindow):
         data = func_open_json()
 
         for procedure_id, procedure in data.items():
-            print(procedure["procedure"])
             self.step_comboBox.addItem(procedure["procedure"])
-
-        
+  
         self.timer = QTimer(self)
         self.timer.setInterval(1000)  # 1 second
         self.timer.timeout.connect(lambda: update_time(self))

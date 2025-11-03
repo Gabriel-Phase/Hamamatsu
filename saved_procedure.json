@@ -6,11 +6,11 @@
         "step_3_value": 25,
         "step_4_value": 20,
         "step_5_value": 10,
-        "step_1_time": "00:00:10",
-        "step_2_time": "00:00:10",
-        "step_3_time": "00:00:10",
-        "step_4_time": "00:00:10",
-        "step_5_time": "00:00:10"
+        "step_1_time": "00:00:03",
+        "step_2_time": "00:00:03",
+        "step_3_time": "00:00:03",
+        "step_4_time": "00:00:03",
+        "step_5_time": "00:00:03"
     },
     "2": {
         "procedure": "TFLN",

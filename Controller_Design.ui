@@ -178,7 +178,7 @@ QLineEdit QAbstractItemView {
 </string>
     </property>
     <property name="text">
-     <string>Confirm</string>
+     <string>Start Timer</string>
     </property>
    </widget>
    <widget class="QLabel" name="timer_display">
