@@ -1,8 +1,9 @@
 from PyQt6 import QtWidgets, uic
 from PyQt6.QtCore import QTime, QTimer
-from PyQt6.QtCore import QTimer, QTime
+from PyQt6.QtGui import QRegularExpressionValidator
+from PyQt6.QtCore import QRegularExpression
 from uv_led_controller import Controller
-import os
+import os, json
 
 try:
     controller_object = Controller()  
@@ -10,20 +11,20 @@ except Exception as e:
     print("unable to connect to the UV controller")
 
 step_dictonary = {
-    i: {"intensity": 0, "time":"00:00:00", "pos":0, "step": "step "+ str(i+1)}
+    i: {"intensity": 0, "time":"00:00:00", "pos":0, "step": "STEP "+ str(i+1)}
     for i in range(0, 5)
 }
 pos_dictonary = {
     "pos": 0
 }
 
-def func_ch_button(indicator, self):
-    if indicator.isChecked():
+# def func_ch_button(indicator):
+#     if indicator.isChecked():
         
-        indicator.setChecked(False)
-    else:
+#         indicator.setChecked(False)
+#     else:
         
-        indicator.setChecked(True)
+#         indicator.setChecked(True)
 
 def func_setIntensity_button(intensity_control, intensity_button):
     intensity_value = intensity_button.text()
@@ -56,16 +57,16 @@ def func_uv_onOff_button(self, controller_object):
 
 def func_check_ch(self, uv_list):
 
-    if (self.ch1_indicator.isChecked() and self.ch2_indicator.isChecked() and self.ch3_indicator.isChecked() and self.ch4_indicator.isChecked()):
+    if (self.ch1_button.isChecked() and self.ch2_button.isChecked() and self.ch3_button.isChecked() and self.ch4_button.isChecked()):
         uv_list.append(0)
     else:
-        if self.ch1_indicator.isChecked():
+        if self.ch1_button.isChecked():
             uv_list.append(1)
-        if self.ch2_indicator.isChecked():
+        if self.ch2_button.isChecked():
             uv_list.append(2)
-        if self.ch3_indicator.isChecked():
+        if self.ch3_button.isChecked():
             uv_list.append(3)
-        if self.ch4_indicator.isChecked():
+        if self.ch4_button.isChecked():
             uv_list.append(4)
     print(uv_list)
     
@@ -112,17 +113,35 @@ def func_next_step_control(self):
     if (pos_dictonary["pos"] > 4):
         print("Step Procedure Completed")
         self.step_indicator.setChecked(False)
+        
+        orginal_style = self.intensity_control.styleSheet()
+        orginal_style2 = self.timer_input.styleSheet()
+        color_widget = getattr(self, f"step{pos_dictonary['pos']}_intensity")
+        color_widget.setStyleSheet(orginal_style)
+        color_widget = getattr(self, f"step{pos_dictonary['pos']}_time")
+        color_widget.setStyleSheet(orginal_style2)
     else:
         if (step_dictonary[pos_dictonary["pos"]]["intensity"] == 0):
             print("Skipping step Ending Early")
             self.step_indicator.setChecked(False)
-        else:    
+        else:
+            orginal_style = self.intensity_control.styleSheet()
+            orginal_style2 = self.timer_input.styleSheet()
+            color_widget = getattr(self, f"step{pos_dictonary['pos']}_intensity")
+            color_widget.setStyleSheet(orginal_style)
+            color_widget = getattr(self, f"step{pos_dictonary['pos']}_time")
+            color_widget.setStyleSheet(orginal_style2)
+
             self.step_display.setText(step_dictonary[pos_dictonary["pos"]]["step"])
             func_set_time_display(self, step_dictonary[pos_dictonary["pos"]]["time"])
-            print(step_dictonary[pos_dictonary["pos"]]["time"])
             self.intensity_control.setValue(step_dictonary[pos_dictonary["pos"]]["intensity"])
-            print(step_dictonary[pos_dictonary["pos"]]["intensity"])
             self.timer.start()
+
+            color_widget = getattr(self, f"step{pos_dictonary['pos']+1}_intensity")
+            color_widget.setStyleSheet("background-color: rgb(181, 234, 170); color: rgb(0, 0, 0);")
+            color_widget = getattr(self, f"step{pos_dictonary['pos']+1}_time")
+            color_widget.setStyleSheet("background-color: rgb(181, 234, 170); color: rgb(0, 0, 0);")
+
         pos_dictonary["pos"] += 1
 
 def func_manual_mode(self):
@@ -134,45 +153,28 @@ def func_manual_mode(self):
         controller_object.func_program_control_enable()
 
 def func_start_step_control(self):
+
     pos_dictonary["pos"] = 0
-    
-    step1_intensity_value = self.step1_intensity.value()
-    step2_intensity_value = self.step2_intensity.value()
-    step3_intensity_value = self.step3_intensity.value()
-    step4_intensity_value = self.step4_intensity.value()
-    step5_intensity_value = self.step5_intensity.value()
-    step1_time_value = self.step1_time.text()
-    step2_time_value = self.step2_time.text()
-    step3_time_value = self.step3_time.text()
-    step4_time_value = self.step4_time.text()
-    step5_time_value = self.step5_time.text()
-
     self.step_indicator.setChecked(True)
-    
-    step1_time = step1_time_value.split(":")
-    step2_time = step2_time_value.split(":")
-    step3_time = step3_time_value.split(":")
-    step4_time = step4_time_value.split(":")
-    step5_time = step5_time_value.split(":")
-    
 
-
-    step_dictonary[0]["intensity"] = int(step1_intensity_value)
-    step_dictonary[0]["time"] = step1_time
-    step_dictonary[1]["intensity"] = int(step2_intensity_value)
-    step_dictonary[1]["time"] = step2_time
-    step_dictonary[2]["intensity"] = int(step3_intensity_value)
-    step_dictonary[2]["time"] = step3_time
-    step_dictonary[3]["intensity"] = int(step4_intensity_value)
-    step_dictonary[3]["time"] = step4_time
-    step_dictonary[4]["intensity"] = int(step5_intensity_value)
-    step_dictonary[4]["time"] = step5_time
+    for i in range (5):
+        step_num = i + 1
+        intensity_widget = getattr(self, f"step{step_num}_intensity")
+        time_widget = getattr(self, f"step{step_num}_time")
+        step_dictonary[i]["intensity"] = int(intensity_widget.value())
+        step_dictonary[i]["time"] = time_widget.text().split(":")
 
     pos_dictonary["pos"] += 1
     
-    func_set_time_display(self, step1_time)
-    self.intensity_control.setValue(int(step1_intensity_value))
+    func_set_time_display(self, self.step1_time.text().split(":"))
+    self.intensity_control.setValue(int(self.step1_intensity.value()))
     self.step_display.setText( step_dictonary[0]["step"])
+
+    color_widget = getattr(self, f"step{pos_dictonary['pos']}_intensity")
+    color_widget.setStyleSheet("background-color: rgb(181, 234, 170); color: rgb(0, 0, 0);")
+    color_widget = getattr(self, f"step{pos_dictonary['pos']}_time")
+    color_widget.setStyleSheet("background-color: rgb(181, 234, 170); color: rgb(0, 0, 0);")
+
     start_timer(self)  
     
 def func_time_comboBox(self):
@@ -185,20 +187,61 @@ def func_time_comboBox(self):
     elif(current_index == 2):
         self.timer_input.setText("00:20:00")
 
+def func_open_json():
+    with open("saved_procedure.json") as file:
+        data = json.load(file)
+    return data
+
 def func_step_comboBox(self):
     current_index = self.step_comboBox.currentIndex()
 
-    if(current_index == 0):
-        step1_intensity_value = self.step1_intensity.setValue(100)
-        step2_intensity_value = self.step2_intensity.setValue(50)
-        step3_intensity_value = self.step3_intensity.setValue(25)
-        step4_intensity_value = self.step4_intensity.setValue(20)
-        step5_intensity_value = self.step5_intensity.setValue(10)
-        step1_time_value = self.step1_time.setText("0:01:00")
-        step2_time_value = self.step2_time.setText("0:01:00")
-        step3_time_value = self.step3_time.setText("0:01:00")
-        step4_time_value = self.step4_time.setText("0:01:00")
-        tep5_time_value = self.step5_time.setText("0:01:00")
+    if current_index == 0:
+        self.save_procedure_button.show()
+        self.save_procedure_input.show()
+    else:
+        data = func_open_json()
+
+        self.save_procedure_button.hide()
+        self.save_procedure_input.hide()
+            
+        self.step1_intensity.setValue(data[str(current_index)]["step_1_value"])
+        self.step2_intensity.setValue(data[str(current_index)]["step_2_value"])
+        self.step3_intensity.setValue(data[str(current_index)]["step_3_value"])
+        self.step4_intensity.setValue(data[str(current_index)]["step_4_value"])
+        self.step5_intensity.setValue(data[str(current_index)]["step_5_value"])
+        self.step1_time.setText(data[str(current_index)]["step_1_time"])
+        self.step2_time.setText(data[str(current_index)]["step_2_time"])
+        self.step3_time.setText(data[str(current_index)]["step_3_time"])
+        self.step4_time.setText(data[str(current_index)]["step_4_time"])
+        self.step5_time.setText(data[str(current_index)]["step_5_time"])
+
+def func_save_procedure(self):
+
+    new_data = {
+     str(self.step_comboBox.count()): {
+        "procedure": self.save_procedure_input.text(),        
+        "step_1_value": self.step1_intensity.value(), 
+        "step_2_value": self.step2_intensity.value(), 
+        "step_3_value": self.step3_intensity.value(), 
+        "step_4_value": self.step4_intensity.value(), 
+        "step_5_value": self.step5_intensity.value(), 
+        "step_1_time": self.step1_time.text(), 
+        "step_2_time": self.step2_time.text(), 
+        "step_3_time": self.step3_time.text(), 
+        "step_4_time": self.step4_time.text(), 
+        "step_5_time": self.step5_time.text()
+        }
+    }
+    self.step_comboBox.addItem(new_data[str(self.step_comboBox.count())]["procedure"])
+   
+    with open("saved_procedure.json", "r") as file:
+        existing_data = json.load(file)
+    
+    existing_data.update(new_data)
+
+    with open("saved_procedure.json", "w") as file:
+        json.dump(existing_data, file, indent=4)
+
     
 class MainWindow(QtWidgets.QMainWindow):
     def __init__(self):
@@ -207,10 +250,10 @@ class MainWindow(QtWidgets.QMainWindow):
         ui_file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "Controller_Design.ui") 
         uic.loadUi(ui_file_path, self)
  
-        self.ch1_button.clicked.connect(lambda: func_ch_button(self.ch1_indicator, self))
-        self.ch2_button.clicked.connect(lambda: func_ch_button(self.ch2_indicator, self))
-        self.ch3_button.clicked.connect(lambda: func_ch_button(self.ch3_indicator, self))
-        self.ch4_button.clicked.connect(lambda: func_ch_button(self.ch4_indicator, self))
+        # self.ch1_button.clicked.connect(lambda: func_ch_button(self.ch1_indicator))
+        # self.ch2_button.clicked.connect(lambda: func_ch_button(self.ch2_indicator))
+        # self.ch3_button.clicked.connect(lambda: func_ch_button(self.ch3_indicator))
+        # self.ch4_button.clicked.connect(lambda: func_ch_button(self.ch4_indicator))
 
         self.setIntensity1_button.clicked.connect(lambda: func_setIntensity_button(self.intensity_control, self.setIntensity1_button))
         self.setIntensity2_button.clicked.connect(lambda: func_setIntensity_button(self.intensity_control, self.setIntensity2_button))
@@ -222,13 +265,43 @@ class MainWindow(QtWidgets.QMainWindow):
         self.saveIntensity3_button.clicked.connect(lambda: func_saveIntensity_button(self.intensity_control, self.setIntensity3_button))
         self.saveIntensity4_button.clicked.connect(lambda: func_saveIntensity_button(self.intensity_control, self.setIntensity4_button))
 
-        self.onOff_button.clicked.connect(lambda: func_uv_onOff_button(self, controller_object))
+        self.timer_input.setInputMask("00:00:00;_")
+        self.step1_time.setInputMask("00:00:00;_")
+        self.step2_time.setInputMask("00:00:00;_")
+        self.step3_time.setInputMask("00:00:00;_")
+        self.step4_time.setInputMask("00:00:00;_")
+        self.step5_time.setInputMask("00:00:00;_")
 
+        time_regex = QRegularExpression("^(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d$")
+        time_validator = QRegularExpressionValidator(time_regex, self.timer_input)
+
+        self.timer_input.setValidator(time_validator)
+        self.step1_time.setValidator(time_validator)
+        self.step2_time.setValidator(time_validator)
+        self.step3_time.setValidator(time_validator)
+        self.step4_time.setValidator(time_validator)
+        self.step5_time.setValidator(time_validator)
+        
+        self.onOff_button.clicked.connect(lambda: func_uv_onOff_button(self, controller_object))
         self.confirmTimer_button.clicked.connect(lambda: func_setTimer(self))
+
         self.manual_box.clicked.connect(lambda: func_manual_mode(self))
         self.step_control_button.clicked.connect(lambda: func_start_step_control(self))
+
+
         self.time_comboBox.currentIndexChanged.connect(lambda: func_time_comboBox(self))
         self.step_comboBox.currentIndexChanged.connect(lambda: func_step_comboBox(self))
+
+        self.save_procedure_button.clicked.connect(lambda: func_save_procedure(self))
+        self.save_procedure_button.hide()
+        self.save_procedure_input.hide()
+
+        data = func_open_json()
+
+        for procedure_id, procedure in data.items():
+            print(procedure["procedure"])
+            self.step_comboBox.addItem(procedure["procedure"])
+
         
         self.timer = QTimer(self)
         self.timer.setInterval(1000)  # 1 second

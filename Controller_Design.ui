@@ -31,7 +31,7 @@
     </property>
     <property name="styleSheet">
      <string notr="true">font: 700 36pt &quot;Arial&quot;;
-color: rgb(146, 144, 141);</string>
+color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
      <string>Hamamatsu UV Control</string>
@@ -91,9 +91,18 @@ color: rgb(146, 144, 141);</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(47, 47, 47);
-font: 16pt &quot;Segoe UI&quot;;
-color: rgb(255, 255, 255);</string>
+     <string notr="true">QSpinBox{
+	background-color: rgb(19, 38, 77);
+	border-color: rgb(181, 234, 170);
+	border-width: 1px;
+    border-style: solid;
+	
+	color: rgb(255, 255, 255);
+	padding: 1px 0px 1px 3px;
+}
+QSpinBox QAbstractItemView {
+	color: rgb(255, 255, 255);
+            }</string>
     </property>
     <property name="maximum">
      <number>100</number>
@@ -109,7 +118,9 @@ color: rgb(255, 255, 255);</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(255, 255, 255);</string>
+     <string notr="true">color: rgb(255, 255, 255);
+font: 700 10pt &quot;Segoe UI&quot;;
+text-decoration: underline;</string>
     </property>
     <property name="text">
      <string>Timer</string>
@@ -130,10 +141,16 @@ color: rgb(255, 255, 255);</string>
     <property name="styleSheet">
      <string notr="true">QLineEdit{
 	background-color: rgb(19, 38, 77);
-	color: rgb(255, 255, 255);
-	
 	border-color: rgb(181, 234, 170);
-}</string>
+	border-width: 1px;
+    border-style: solid;
+	
+	color: rgb(255, 255, 255);
+	padding: 1px 0px 1px 3px;
+}
+QLineEdit QAbstractItemView {
+	color: rgb(255, 255, 255);
+            }</string>
     </property>
     <property name="text">
      <string>00:00:00</string>
@@ -182,7 +199,7 @@ color: rgb(255, 255, 255);</string>
     <property name="styleSheet">
      <string notr="true">border-color: rgb(0, 0, 0);
 font: 20pt &quot;OCR A&quot;;
-color: rgb(146, 144, 141);</string>
+color: rgb(255, 255, 255);</string>
     </property>
     <property name="lineWidth">
      <number>1</number>
@@ -204,7 +221,7 @@ color: rgb(146, 144, 141);</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(146, 144, 141);</string>
+     <string notr="true">color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
      <string>Manual Mode</string>
@@ -220,7 +237,9 @@ color: rgb(146, 144, 141);</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(255, 255, 255);</string>
+     <string notr="true">color: rgb(255, 255, 255);
+font: 700 10pt &quot;Segoe UI&quot;;
+text-decoration: underline;</string>
     </property>
     <property name="text">
      <string>Channel Selection</string>
@@ -234,12 +253,14 @@ color: rgb(146, 144, 141);</string>
      <rect>
       <x>650</x>
       <y>200</y>
-      <width>101</width>
+      <width>111</width>
       <height>16</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(255, 255, 255);</string>
+     <string notr="true">color: rgb(255, 255, 255);
+font: 700 10pt &quot;Segoe UI&quot;;
+text-decoration: underline;</string>
     </property>
     <property name="text">
      <string>Current Intensity</string>
@@ -282,7 +303,10 @@ selection-background-color: rgb(0, 170, 0);</string>
 	background-color: rgb(19, 38, 77);
 	color: rgb(183, 225, 161);
    }
-
+QPushButton:checked {
+	background-color: rgb(181, 234, 170);
+    color: rgb(0, 0, 0);
+}
  QPushButton::hover {
 	background-color: rgb(181, 234, 170);
 	color: rgb(0, 0, 0);
@@ -291,6 +315,9 @@ selection-background-color: rgb(0, 170, 0);</string>
        </property>
        <property name="text">
         <string>CH2</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
@@ -314,7 +341,10 @@ selection-background-color: rgb(0, 170, 0);</string>
 	background-color: rgb(19, 38, 77);
 	color: rgb(183, 225, 161);
    }
-
+QPushButton:checked {
+	background-color: rgb(181, 234, 170);
+    color: rgb(0, 0, 0);
+}
  QPushButton::hover {
 	background-color: rgb(181, 234, 170);
 	color: rgb(0, 0, 0);
@@ -323,6 +353,9 @@ selection-background-color: rgb(0, 170, 0);</string>
        </property>
        <property name="text">
         <string>CH3</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
@@ -346,7 +379,10 @@ selection-background-color: rgb(0, 170, 0);</string>
 	background-color: rgb(19, 38, 77);
 	color: rgb(183, 225, 161);
    }
-
+QPushButton:checked {
+	background-color: rgb(181, 234, 170);
+    color: rgb(0, 0, 0);
+}
  QPushButton::hover {
 	background-color: rgb(181, 234, 170);
 	color: rgb(0, 0, 0);
@@ -355,6 +391,9 @@ selection-background-color: rgb(0, 170, 0);</string>
        </property>
        <property name="text">
         <string>CH4</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
@@ -378,7 +417,10 @@ selection-background-color: rgb(0, 170, 0);</string>
 	background-color: rgb(19, 38, 77);
 	color: rgb(183, 225, 161);
    }
-
+QPushButton:checked {
+	background-color: rgb(181, 234, 170);
+    color: rgb(0, 0, 0);
+}
  QPushButton::hover {
 	background-color: rgb(181, 234, 170);
 	color: rgb(0, 0, 0);
@@ -388,6 +430,9 @@ selection-background-color: rgb(0, 170, 0);</string>
        </property>
        <property name="text">
         <string>CH1</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
@@ -403,44 +448,84 @@ selection-background-color: rgb(0, 170, 0);</string>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout">
-     <item row="0" column="0">
-      <widget class="QLineEdit" name="step1_time">
+     <item row="1" column="2">
+      <widget class="QSpinBox" name="step3_intensity">
        <property name="styleSheet">
-        <string notr="true">color: rgb(255, 255, 255);</string>
-       </property>
-       <property name="text">
-        <string>00:00:00</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="0">
-      <widget class="QSpinBox" name="step1_intensity">
-       <property name="styleSheet">
-        <string notr="true">color: rgb(255, 255, 255);</string>
+        <string notr="true">QSpinBox{
+	background-color: rgb(19, 38, 77);
+	border-color: rgb(181, 234, 170);
+	border-width: 1px;
+    border-style: solid;
+	
+	color: rgb(255, 255, 255);
+	padding: 1px 0px 1px 3px;
+}
+QSpinBox QAbstractItemView {
+	color: rgb(255, 255, 255);
+            }</string>
        </property>
        <property name="maximum">
         <number>100</number>
        </property>
       </widget>
      </item>
-     <item row="0" column="5">
-      <widget class="QLabel" name="step_display">
+     <item row="0" column="3">
+      <widget class="QLineEdit" name="step4_time">
        <property name="styleSheet">
-        <string notr="true">border-color: rgb(0, 0, 0);
-color: rgb(146, 144, 141);</string>
+        <string notr="true">QLineEdit{
+	background-color: rgb(19, 38, 77);
+	border-color: rgb(181, 234, 170);
+	border-width: 1px;
+    border-style: solid;
+	
+	color: rgb(255, 255, 255);
+	padding: 1px 0px 1px 3px;
+}
+QLineEdit QAbstractItemView {
+	color: rgb(255, 255, 255);
+            }</string>
        </property>
        <property name="text">
-        <string/>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignmentFlag::AlignCenter</set>
+        <string>00:00:00</string>
        </property>
       </widget>
      </item>
-     <item row="0" column="1">
-      <widget class="QLineEdit" name="step2_time">
+     <item row="0" column="2">
+      <widget class="QLineEdit" name="step3_time">
        <property name="styleSheet">
-        <string notr="true">color: rgb(255, 255, 255);</string>
+        <string notr="true">QLineEdit{
+	background-color: rgb(19, 38, 77);
+	border-color: rgb(181, 234, 170);
+	border-width: 1px;
+    border-style: solid;
+	
+	color: rgb(255, 255, 255);
+	padding: 1px 0px 1px 3px;
+}
+QLineEdit QAbstractItemView {
+	color: rgb(255, 255, 255);
+            }</string>
+       </property>
+       <property name="text">
+        <string>00:00:00</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QLineEdit" name="step1_time">
+       <property name="styleSheet">
+        <string notr="true">QLineEdit{
+	background-color: rgb(19, 38, 77);
+	border-color: rgb(181, 234, 170);
+	border-width: 1px;
+    border-style: solid;
+	
+	color: rgb(255, 255, 255);
+	padding: 1px 0px 1px 3px;
+}
+QLineEdit QAbstractItemView {
+	color: rgb(255, 255, 255);
+            }</string>
        </property>
        <property name="text">
         <string>00:00:00</string>
@@ -450,40 +535,21 @@ color: rgb(146, 144, 141);</string>
      <item row="1" column="3">
       <widget class="QSpinBox" name="step4_intensity">
        <property name="styleSheet">
-        <string notr="true">color: rgb(255, 255, 255);</string>
+        <string notr="true">QSpinBox{
+	background-color: rgb(19, 38, 77);
+	border-color: rgb(181, 234, 170);
+	border-width: 1px;
+    border-style: solid;
+	
+	color: rgb(255, 255, 255);
+	padding: 1px 0px 1px 3px;
+}
+QSpinBox QAbstractItemView {
+	color: rgb(255, 255, 255);
+            }</string>
        </property>
        <property name="maximum">
         <number>100</number>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <widget class="QSpinBox" name="step2_intensity">
-       <property name="styleSheet">
-        <string notr="true">color: rgb(255, 255, 255);</string>
-       </property>
-       <property name="maximum">
-        <number>100</number>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="2">
-      <widget class="QSpinBox" name="step3_intensity">
-       <property name="styleSheet">
-        <string notr="true">color: rgb(255, 255, 255);</string>
-       </property>
-       <property name="maximum">
-        <number>100</number>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="2">
-      <widget class="QLineEdit" name="step3_time">
-       <property name="styleSheet">
-        <string notr="true">color: rgb(255, 255, 255);</string>
-       </property>
-       <property name="text">
-        <string>00:00:00</string>
        </property>
       </widget>
      </item>
@@ -506,20 +572,21 @@ color: rgb(146, 144, 141);</string>
        </property>
       </widget>
      </item>
-     <item row="0" column="3">
-      <widget class="QLineEdit" name="step4_time">
+     <item row="1" column="1">
+      <widget class="QSpinBox" name="step2_intensity">
        <property name="styleSheet">
-        <string notr="true">color: rgb(255, 255, 255);</string>
-       </property>
-       <property name="text">
-        <string>00:00:00</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="4">
-      <widget class="QSpinBox" name="step5_intensity">
-       <property name="styleSheet">
-        <string notr="true">color: rgb(255, 255, 255);</string>
+        <string notr="true">QSpinBox{
+	background-color: rgb(19, 38, 77);
+	border-color: rgb(181, 234, 170);
+	border-width: 1px;
+    border-style: solid;
+	
+	color: rgb(255, 255, 255);
+	padding: 1px 0px 1px 3px;
+}
+QSpinBox QAbstractItemView {
+	color: rgb(255, 255, 255);
+            }</string>
        </property>
        <property name="maximum">
         <number>100</number>
@@ -529,10 +596,105 @@ color: rgb(146, 144, 141);</string>
      <item row="0" column="4">
       <widget class="QLineEdit" name="step5_time">
        <property name="styleSheet">
-        <string notr="true">color: rgb(255, 255, 255);</string>
+        <string notr="true">QLineEdit{
+	background-color: rgb(19, 38, 77);
+	border-color: rgb(181, 234, 170);
+	border-width: 1px;
+    border-style: solid;
+	
+	color: rgb(255, 255, 255);
+	padding: 1px 0px 1px 3px;
+}
+QLineEdit QAbstractItemView {
+	color: rgb(255, 255, 255);
+            }</string>
        </property>
        <property name="text">
         <string>00:00:00</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="4">
+      <widget class="QSpinBox" name="step5_intensity">
+       <property name="styleSheet">
+        <string notr="true">QSpinBox{
+	background-color: rgb(19, 38, 77);
+	border-color: rgb(181, 234, 170);
+	border-width: 1px;
+    border-style: solid;
+	
+	color: rgb(255, 255, 255);
+	padding: 1px 0px 1px 3px;
+}
+QSpinBox QAbstractItemView {
+	color: rgb(255, 255, 255);
+            }</string>
+       </property>
+       <property name="maximum">
+        <number>100</number>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QSpinBox" name="step1_intensity">
+       <property name="styleSheet">
+        <string notr="true">QSpinBox{
+	background-color: rgb(19, 38, 77);
+	border-color: rgb(181, 234, 170);
+	border-width: 1px;
+    border-style: solid;
+	
+	color: rgb(255, 255, 255);
+	padding: 1px 0px 1px 3px;
+}
+QSpinBox QAbstractItemView {
+	color: rgb(255, 255, 255);
+            }</string>
+       </property>
+       <property name="maximum">
+        <number>100</number>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLineEdit" name="step2_time">
+       <property name="styleSheet">
+        <string notr="true">QLineEdit{
+	background-color: rgb(19, 38, 77);
+	border-color: rgb(181, 234, 170);
+	border-width: 1px;
+    border-style: solid;
+	
+	color: rgb(255, 255, 255);
+	padding: 1px 0px 1px 3px;
+}
+QLineEdit QAbstractItemView {
+	color: rgb(255, 255, 255);
+            }</string>
+       </property>
+       <property name="text">
+        <string>00:00:00</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="5">
+      <widget class="QLabel" name="step_display">
+       <property name="styleSheet">
+        <string notr="true">QLabel{
+	background-color: rgb(19, 38, 77);
+	border-color: rgb(181, 234, 170);
+	border-width: 1px;
+    border-style: solid;
+	
+	color: rgb(255, 255, 255);
+	padding: 1px 0px 1px 3px;
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignCenter</set>
        </property>
       </widget>
      </item>
@@ -541,14 +703,14 @@ color: rgb(146, 144, 141);</string>
    <widget class="QCheckBox" name="step_indicator">
     <property name="geometry">
      <rect>
-      <x>720</x>
+      <x>740</x>
       <y>360</y>
       <width>16</width>
-      <height>20</height>
+      <height>16</height>
      </rect>
     </property>
     <property name="text">
-     <string>CheckBox</string>
+     <string/>
     </property>
    </widget>
    <widget class="QWidget" name="formLayoutWidget_3">
@@ -766,7 +928,7 @@ QComboBox QAbstractItemView {
    <widget class="QComboBox" name="step_comboBox">
     <property name="geometry">
      <rect>
-      <x>530</x>
+      <x>540</x>
       <y>340</y>
       <width>161</width>
       <height>22</height>
@@ -786,14 +948,78 @@ QComboBox QAbstractItemView {
 	color: rgb(255, 255, 255);
             }</string>
     </property>
+    <property name="editable">
+     <bool>false</bool>
+    </property>
     <property name="placeholderText">
      <string>Procedure Selection</string>
     </property>
     <item>
      <property name="text">
-      <string>W-Band Bulks</string>
+      <string>+ Add New Procedure</string>
      </property>
     </item>
+   </widget>
+   <widget class="QPushButton" name="save_procedure_button">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>310</y>
+      <width>111</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+	background-color: rgb(19, 38, 77);
+	color: rgb(183, 225, 161);
+   }
+
+ QPushButton::hover {
+	background-color: rgb(181, 234, 170);
+	color: rgb(0, 0, 0);
+   }
+</string>
+    </property>
+    <property name="text">
+     <string>Save Procedure</string>
+    </property>
+    <property name="checkable">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="save_procedure_input">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>340</y>
+      <width>111</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLineEdit{
+	background-color: rgb(19, 38, 77);
+	border-color: rgb(181, 234, 170);
+	border-width: 1px;
+    border-style: solid;
+	
+	color: rgb(255, 255, 255);
+	padding: 1px 0px 1px 3px;
+}
+QLineEdit QAbstractItemView {
+	color: rgb(255, 255, 255);
+            }</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="placeholderText">
+     <string>Please Input Name</string>
+    </property>
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
