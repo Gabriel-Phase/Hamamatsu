@@ -21,29 +21,20 @@ pos_dictonary = {
 }
 
 #function for the on/off button that turns on the UV controller
-def func_uv_onOff_button(self, controller_object):
-    change_onOff_status(self.onOff_button)
+def func_uv_onOff(self, controller_object):
     controller_object.func_set_uv_intensity(int(self.intensityDisplay.text()))
     uv_list = []
 
-    if self.onOff_button.isChecked():
+    if self.step_control_button.isChecked():
         print("Turning on the uv off")
         controller_object.func_uv_off()
-        self.onOff_button.setChecked(False)
+        
     else:
         print("Turning on the uv on... power set to", self.intensityDisplay.text())
-        self.onOff_button.setChecked(True)
+
 
         uv_list = func_check_ch(self, uv_list)
         controller_object.func_uv_on(uv_list)
-
-def change_onOff_status(button):
-    if button.isChecked():
-        button.setStyleSheet("background-color: rgb(0, 255, 0); color: rgb(0, 0, 0);")
-        button.setText("UV OFF")
-    else:
-        button.setStyleSheet("background-color: rgb(255, 30, 0); color: rgb(0, 0, 0);")
-        button.setText("UV ON")
 
 #function that returns a list that determines which uv heads need to be turned on
 def func_check_ch(self, uv_list):
@@ -83,7 +74,7 @@ def func_set_time_display(self, time_list):
 
 #function that runs the timer
 def start_timer(self):
-    # func_uv_onOff_button(self, controller_object)
+    # func_uv_onOff(self, controller_object)
     self.timer.start()
 
 #function that updates the time and signals the next time if using uv step cure
@@ -92,7 +83,7 @@ def update_time(self):
     self.timer_display.setText(self.current_time.toString("hh:mm:ss"))
   
     if(self.current_time.toString("hh:mm:ss") == "00:00:00"):
-        # func_uv_onOff_button(self, controller_object)
+        # func_uv_onOff(self, controller_object)
         self.timer.stop()
         if(self.step_control_button.isChecked()):
             func_next_step_control(self)
@@ -103,20 +94,17 @@ def func_next_step_control(self):
         print("Step Procedure Completed")
         
         self.step_control_button.setChecked(False)
-        change_onOff_status(self.step_control_button)
-
         revert_color_change(self, pos_dictonary['pos'])
     else:
         if (step_dictonary[pos_dictonary["pos"]]["intensity"] == 0):
             print("Skipping Step Ending Early")
             
             self.step_control_button.setChecked(False)
-            change_onOff_status(self.step_control_button)
             revert_color_change(self, pos_dictonary["pos"])
         else:
             revert_color_change(self, pos_dictonary['pos'])
 
-            self.step_display.setText(step_dictonary[pos_dictonary["pos"]]["step"])
+            # self.step_display.setText(step_dictonary[pos_dictonary["pos"]]["step"])
             func_set_time_display(self, step_dictonary[pos_dictonary["pos"]]["time"])
             self.intensityDisplay.setText(str(step_dictonary[pos_dictonary["pos"]]["intensity"]))
 
@@ -131,16 +119,13 @@ def func_manual_mode(self):
         print("Going Manual, Disabling GUI")
         # controller_object.func_manual_control_enable()
         self.step_control_button.setEnabled(False)
-        self.onOff_button.setEnabled(False)
     else:
         print("Going Program mode, enabling GUI") 
         # controller_object.func_program_control_enable()
         self.step_control_button.setEnabled(True)
-        self.onOff_button.setEnabled(True)
 
 #function that begins the process of the step cure
 def func_start_step_control(self):
-    change_onOff_status(self.step_control_button)
     pos_dictonary["pos"] = 0
     self.step_control_button.setChecked(True)
 
@@ -155,7 +140,7 @@ def func_start_step_control(self):
     
     func_set_time_display(self, self.step1_time.text().split(":"))
     self.intensityDisplay.setText(str(self.step1_intensity.value()))
-    self.step_display.setText( step_dictonary[0]["step"])
+    # self.step_display.setText( step_dictonary[0]["step"])
 
     color_change(self, pos_dictonary['pos'])
     start_timer(self)  
@@ -315,7 +300,6 @@ class MainWindow(QtWidgets.QMainWindow):
         self.step4_time.setValidator(time_validator)
         self.step5_time.setValidator(time_validator)
         
-        # self.onOff_button.clicked.connect(lambda: func_uv_onOff_button(self, controller_object))
         self.manual_box.clicked.connect(lambda: func_manual_mode(self))
         self.step_control_button.clicked.connect(lambda: func_start_step_control(self))
         self.step_comboBox.currentIndexChanged.connect(lambda: func_step_comboBox(self))
