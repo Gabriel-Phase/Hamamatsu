@@ -6,50 +6,67 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>793</width>
-    <height>500</height>
+    <width>737</width>
+    <height>374</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Phase Sensitive UV Controller</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>Logo/PSI_swoosh_favicon.png</normaloff>Logo/PSI_swoosh_favicon.png</iconset>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(26, 36, 33);</string>
+   <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(102, 126, 234, 255), stop:1 rgba(118, 75, 162, 255));</string>
+  </property>
+  <property name="toolButtonStyle">
+   <enum>Qt::ToolButtonStyle::ToolButtonFollowStyle</enum>
   </property>
   <property name="animated">
    <bool>false</bool>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <widget class="QLabel" name="title_label">
     <property name="geometry">
      <rect>
       <x>160</x>
       <y>10</y>
-      <width>551</width>
+      <width>411</width>
       <height>51</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font: 700 36pt &quot;Arial&quot;;
-color: rgb(255, 255, 255);</string>
+     <string notr="true">QLabel{
+font: 700 26pt &quot;Arial&quot;;
+color: rgb(255, 255, 255);
+margin: 0px;
+padding: 0px
+}</string>
     </property>
     <property name="text">
      <string>Hamamatsu UV Control</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
     </property>
    </widget>
    <widget class="QPushButton" name="onOff_button">
     <property name="geometry">
      <rect>
-      <x>660</x>
-      <y>100</y>
-      <width>81</width>
-      <height>41</height>
+      <x>600</x>
+      <y>80</y>
+      <width>71</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">QPushButton{
-	background-color: rgb(19, 38, 77);
-	color: rgb(183, 225, 161);
+	background-color: rgb(255, 30, 0);
+	color: rgb(255, 255, 255);
    }
 
  QPushButton::hover {
@@ -59,23 +76,7 @@ color: rgb(255, 255, 255);</string>
 </string>
     </property>
     <property name="text">
-     <string>On/OFF</string>
-    </property>
-   </widget>
-   <widget class="QCheckBox" name="onOff_indicator">
-    <property name="geometry">
-     <rect>
-      <x>690</x>
-      <y>80</y>
-      <width>21</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">selection-color: rgb(0, 85, 255);</string>
-    </property>
-    <property name="text">
-     <string/>
+     <string>UV ON</string>
     </property>
     <property name="checkable">
      <bool>true</bool>
@@ -84,8 +85,8 @@ color: rgb(255, 255, 255);</string>
    <widget class="QSpinBox" name="intensity_control">
     <property name="geometry">
      <rect>
-      <x>660</x>
-      <y>230</y>
+      <x>630</x>
+      <y>320</y>
       <width>91</width>
       <height>31</height>
      </rect>
@@ -96,7 +97,6 @@ color: rgb(255, 255, 255);</string>
 	border-color: rgb(181, 234, 170);
 	border-width: 1px;
     border-style: solid;
-	
 	color: rgb(255, 255, 255);
 	padding: 1px 0px 1px 3px;
 }
@@ -108,86 +108,13 @@ QSpinBox QAbstractItemView {
      <number>100</number>
     </property>
    </widget>
-   <widget class="QLabel" name="timer_label">
-    <property name="geometry">
-     <rect>
-      <x>200</x>
-      <y>80</y>
-      <width>101</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(255, 255, 255);
-font: 700 10pt &quot;Segoe UI&quot;;
-text-decoration: underline;</string>
-    </property>
-    <property name="text">
-     <string>Timer</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignmentFlag::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="timer_input">
-    <property name="geometry">
-     <rect>
-      <x>200</x>
-      <y>110</y>
-      <width>113</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QLineEdit{
-	background-color: rgb(19, 38, 77);
-	border-color: rgb(181, 234, 170);
-	border-width: 1px;
-    border-style: solid;
-	
-	color: rgb(255, 255, 255);
-	padding: 1px 0px 1px 3px;
-}
-QLineEdit QAbstractItemView {
-	color: rgb(255, 255, 255);
-            }</string>
-    </property>
-    <property name="text">
-     <string>00:00:00</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="confirmTimer_button">
-    <property name="geometry">
-     <rect>
-      <x>220</x>
-      <y>140</y>
-      <width>79</width>
-      <height>24</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPushButton{
-	background-color: rgb(19, 38, 77);
-	color: rgb(183, 225, 161);
-   }
-
- QPushButton::hover {
-	background-color: rgb(181, 234, 170);
-	color: rgb(0, 0, 0);
-   }
-</string>
-    </property>
-    <property name="text">
-     <string>Start Timer</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="timer_display">
     <property name="geometry">
      <rect>
-      <x>630</x>
-      <y>160</y>
-      <width>151</width>
-      <height>21</height>
+      <x>310</x>
+      <y>80</y>
+      <width>111</width>
+      <height>20</height>
      </rect>
     </property>
     <property name="layoutDirection">
@@ -197,9 +124,11 @@ QLineEdit QAbstractItemView {
      <bool>false</bool>
     </property>
     <property name="styleSheet">
-     <string notr="true">border-color: rgb(0, 0, 0);
-font: 20pt &quot;OCR A&quot;;
-color: rgb(255, 255, 255);</string>
+     <string notr="true">QLabel{
+border-color: rgb(0, 0, 0);
+font: 16pt &quot;OCR A&quot;;
+color: rgb(255, 255, 255);
+}</string>
     </property>
     <property name="lineWidth">
      <number>1</number>
@@ -230,8 +159,8 @@ color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>80</y>
+      <x>10</x>
+      <y>190</y>
       <width>111</width>
       <height>16</height>
      </rect>
@@ -251,10 +180,10 @@ text-decoration: underline;</string>
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>650</x>
-      <y>200</y>
+      <x>450</x>
+      <y>100</y>
       <width>111</width>
-      <height>16</height>
+      <height>21</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -269,227 +198,16 @@ text-decoration: underline;</string>
      <set>Qt::AlignmentFlag::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QWidget" name="formLayoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>120</y>
-      <width>101</width>
-      <height>116</height>
-     </rect>
-    </property>
-    <layout class="QFormLayout" name="formLayout">
-     <item row="0" column="1">
-      <widget class="QCheckBox" name="ch1_indicator">
-       <property name="autoFillBackground">
-        <bool>false</bool>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">selection-color: rgb(0, 85, 255);
-selection-background-color: rgb(0, 170, 0);</string>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="checkable">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="0">
-      <widget class="QPushButton" name="ch2_button">
-       <property name="styleSheet">
-        <string notr="true">QPushButton{
-	background-color: rgb(19, 38, 77);
-	color: rgb(183, 225, 161);
-   }
-QPushButton:checked {
-	background-color: rgb(181, 234, 170);
-    color: rgb(0, 0, 0);
-}
- QPushButton::hover {
-	background-color: rgb(181, 234, 170);
-	color: rgb(0, 0, 0);
-   }
-</string>
-       </property>
-       <property name="text">
-        <string>CH2</string>
-       </property>
-       <property name="checkable">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <widget class="QCheckBox" name="ch2_indicator">
-       <property name="styleSheet">
-        <string notr="true">selection-color: rgb(0, 85, 255);</string>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="checkable">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="0">
-      <widget class="QPushButton" name="ch3_button">
-       <property name="styleSheet">
-        <string notr="true">QPushButton{
-	background-color: rgb(19, 38, 77);
-	color: rgb(183, 225, 161);
-   }
-QPushButton:checked {
-	background-color: rgb(181, 234, 170);
-    color: rgb(0, 0, 0);
-}
- QPushButton::hover {
-	background-color: rgb(181, 234, 170);
-	color: rgb(0, 0, 0);
-   }
-</string>
-       </property>
-       <property name="text">
-        <string>CH3</string>
-       </property>
-       <property name="checkable">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="1">
-      <widget class="QCheckBox" name="ch3_indicator">
-       <property name="styleSheet">
-        <string notr="true">selection-color: rgb(0, 85, 255);</string>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="checkable">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="0">
-      <widget class="QPushButton" name="ch4_button">
-       <property name="styleSheet">
-        <string notr="true">QPushButton{
-	background-color: rgb(19, 38, 77);
-	color: rgb(183, 225, 161);
-   }
-QPushButton:checked {
-	background-color: rgb(181, 234, 170);
-    color: rgb(0, 0, 0);
-}
- QPushButton::hover {
-	background-color: rgb(181, 234, 170);
-	color: rgb(0, 0, 0);
-   }
-</string>
-       </property>
-       <property name="text">
-        <string>CH4</string>
-       </property>
-       <property name="checkable">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="1">
-      <widget class="QCheckBox" name="ch4_indicator">
-       <property name="styleSheet">
-        <string notr="true">selection-color: rgb(0, 85, 255);</string>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="checkable">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="0">
-      <widget class="QPushButton" name="ch1_button">
-       <property name="styleSheet">
-        <string notr="true">QPushButton{
-	background-color: rgb(19, 38, 77);
-	color: rgb(183, 225, 161);
-   }
-QPushButton:checked {
-	background-color: rgb(181, 234, 170);
-    color: rgb(0, 0, 0);
-}
- QPushButton::hover {
-	background-color: rgb(181, 234, 170);
-	color: rgb(0, 0, 0);
-   }
-
-</string>
-       </property>
-       <property name="text">
-        <string>CH1</string>
-       </property>
-       <property name="checkable">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
    <widget class="QWidget" name="gridLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>290</x>
-      <y>380</y>
-      <width>481</width>
-      <height>80</height>
+      <x>130</x>
+      <y>260</y>
+      <width>441</width>
+      <height>82</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout">
-     <item row="1" column="2">
-      <widget class="QSpinBox" name="step3_intensity">
-       <property name="styleSheet">
-        <string notr="true">QSpinBox{
-	background-color: rgb(19, 38, 77);
-	border-color: rgb(181, 234, 170);
-	border-width: 1px;
-    border-style: solid;
-	
-	color: rgb(255, 255, 255);
-	padding: 1px 0px 1px 3px;
-}
-QSpinBox QAbstractItemView {
-	color: rgb(255, 255, 255);
-            }</string>
-       </property>
-       <property name="maximum">
-        <number>100</number>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="3">
-      <widget class="QLineEdit" name="step4_time">
-       <property name="styleSheet">
-        <string notr="true">QLineEdit{
-	background-color: rgb(19, 38, 77);
-	border-color: rgb(181, 234, 170);
-	border-width: 1px;
-    border-style: solid;
-	
-	color: rgb(255, 255, 255);
-	padding: 1px 0px 1px 3px;
-}
-QLineEdit QAbstractItemView {
-	color: rgb(255, 255, 255);
-            }</string>
-       </property>
-       <property name="text">
-        <string>00:00:00</string>
-       </property>
-      </widget>
-     </item>
      <item row="0" column="2">
       <widget class="QLineEdit" name="step3_time">
        <property name="styleSheet">
@@ -511,8 +229,8 @@ QLineEdit QAbstractItemView {
        </property>
       </widget>
      </item>
-     <item row="0" column="0">
-      <widget class="QLineEdit" name="step1_time">
+     <item row="0" column="1">
+      <widget class="QLineEdit" name="step2_time">
        <property name="styleSheet">
         <string notr="true">QLineEdit{
 	background-color: rgb(19, 38, 77);
@@ -532,8 +250,8 @@ QLineEdit QAbstractItemView {
        </property>
       </widget>
      </item>
-     <item row="1" column="3">
-      <widget class="QSpinBox" name="step4_intensity">
+     <item row="1" column="0">
+      <widget class="QSpinBox" name="step1_intensity">
        <property name="styleSheet">
         <string notr="true">QSpinBox{
 	background-color: rgb(19, 38, 77);
@@ -553,27 +271,29 @@ QSpinBox QAbstractItemView {
        </property>
       </widget>
      </item>
-     <item row="1" column="5">
-      <widget class="QPushButton" name="step_control_button">
+     <item row="1" column="1">
+      <widget class="QSpinBox" name="step2_intensity">
        <property name="styleSheet">
-        <string notr="true">QPushButton{
+        <string notr="true">QSpinBox{
 	background-color: rgb(19, 38, 77);
-	color: rgb(183, 225, 161);
-   }
-
- QPushButton::hover {
-	background-color: rgb(181, 234, 170);
-	color: rgb(0, 0, 0);
-   }
-</string>
+	border-color: rgb(181, 234, 170);
+	border-width: 1px;
+    border-style: solid;
+	
+	color: rgb(255, 255, 255);
+	padding: 1px 0px 1px 3px;
+}
+QSpinBox QAbstractItemView {
+	color: rgb(255, 255, 255);
+            }</string>
        </property>
-       <property name="text">
-        <string>Confirm</string>
+       <property name="maximum">
+        <number>100</number>
        </property>
       </widget>
      </item>
-     <item row="1" column="1">
-      <widget class="QSpinBox" name="step2_intensity">
+     <item row="1" column="4">
+      <widget class="QSpinBox" name="step5_intensity">
        <property name="styleSheet">
         <string notr="true">QSpinBox{
 	background-color: rgb(19, 38, 77);
@@ -614,8 +334,8 @@ QLineEdit QAbstractItemView {
        </property>
       </widget>
      </item>
-     <item row="1" column="4">
-      <widget class="QSpinBox" name="step5_intensity">
+     <item row="1" column="3">
+      <widget class="QSpinBox" name="step4_intensity">
        <property name="styleSheet">
         <string notr="true">QSpinBox{
 	background-color: rgb(19, 38, 77);
@@ -635,8 +355,8 @@ QSpinBox QAbstractItemView {
        </property>
       </widget>
      </item>
-     <item row="1" column="0">
-      <widget class="QSpinBox" name="step1_intensity">
+     <item row="1" column="2">
+      <widget class="QSpinBox" name="step3_intensity">
        <property name="styleSheet">
         <string notr="true">QSpinBox{
 	background-color: rgb(19, 38, 77);
@@ -656,8 +376,8 @@ QSpinBox QAbstractItemView {
        </property>
       </widget>
      </item>
-     <item row="0" column="1">
-      <widget class="QLineEdit" name="step2_time">
+     <item row="0" column="0">
+      <widget class="QLineEdit" name="step1_time">
        <property name="styleSheet">
         <string notr="true">QLineEdit{
 	background-color: rgb(19, 38, 77);
@@ -674,6 +394,28 @@ QLineEdit QAbstractItemView {
        </property>
        <property name="text">
         <string>00:00:00</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="5">
+      <widget class="QPushButton" name="step_control_button">
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	background-color: rgb(255, 30, 0);
+	color: rgb(255, 255, 255);
+   }
+
+ QPushButton::hover {
+	background-color: rgb(181, 234, 170);
+	color: rgb(0, 0, 0);
+   }
+</string>
+       </property>
+       <property name="text">
+        <string>UV ON</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
@@ -698,199 +440,10 @@ QLineEdit QAbstractItemView {
        </property>
       </widget>
      </item>
-    </layout>
-   </widget>
-   <widget class="QCheckBox" name="step_indicator">
-    <property name="geometry">
-     <rect>
-      <x>740</x>
-      <y>360</y>
-      <width>16</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QWidget" name="formLayoutWidget_3">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>250</y>
-      <width>160</width>
-      <height>116</height>
-     </rect>
-    </property>
-    <layout class="QFormLayout" name="formLayout_3">
-     <item row="0" column="0">
-      <widget class="QPushButton" name="saveIntensity1_button">
+     <item row="0" column="3">
+      <widget class="QLineEdit" name="step4_time">
        <property name="styleSheet">
-        <string notr="true">QPushButton{
-	background-color: rgb(19, 38, 77);
-	color: rgb(183, 225, 161);
-   }
-
- QPushButton::hover {
-	background-color: rgb(181, 234, 170);
-	color: rgb(0, 0, 0);
-   }
-</string>
-       </property>
-       <property name="text">
-        <string>Save </string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="1">
-      <widget class="QPushButton" name="setIntensity1_button">
-       <property name="styleSheet">
-        <string notr="true">QPushButton{
-	background-color: rgb(19, 38, 77);
-	color: rgb(183, 225, 161);
-   }
-
- QPushButton::hover {
-	background-color: rgb(181, 234, 170);
-	color: rgb(0, 0, 0);
-   }
-</string>
-       </property>
-       <property name="text">
-        <string>0%</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="0">
-      <widget class="QPushButton" name="saveIntensity2_button">
-       <property name="styleSheet">
-        <string notr="true">QPushButton{
-	background-color: rgb(19, 38, 77);
-	color: rgb(183, 225, 161);
-   }
-
- QPushButton::hover {
-	background-color: rgb(181, 234, 170);
-	color: rgb(0, 0, 0);
-   }
-</string>
-       </property>
-       <property name="text">
-        <string>Save </string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <widget class="QPushButton" name="setIntensity2_button">
-       <property name="styleSheet">
-        <string notr="true">QPushButton{
-	background-color: rgb(19, 38, 77);
-	color: rgb(183, 225, 161);
-   }
-
- QPushButton::hover {
-	background-color: rgb(181, 234, 170);
-	color: rgb(0, 0, 0);
-   }
-</string>
-       </property>
-       <property name="text">
-        <string>10%</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="0">
-      <widget class="QPushButton" name="saveIntensity3_button">
-       <property name="styleSheet">
-        <string notr="true">QPushButton{
-	background-color: rgb(19, 38, 77);
-	color: rgb(183, 225, 161);
-   }
-
- QPushButton::hover {
-	background-color: rgb(181, 234, 170);
-	color: rgb(0, 0, 0);
-   }
-</string>
-       </property>
-       <property name="text">
-        <string>Save </string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="1">
-      <widget class="QPushButton" name="setIntensity3_button">
-       <property name="styleSheet">
-        <string notr="true">QPushButton{
-	background-color: rgb(19, 38, 77);
-	color: rgb(183, 225, 161);
-   }
-
- QPushButton::hover {
-	background-color: rgb(181, 234, 170);
-	color: rgb(0, 0, 0);
-   }
-</string>
-       </property>
-       <property name="text">
-        <string>50%</string>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="0">
-      <widget class="QPushButton" name="saveIntensity4_button">
-       <property name="styleSheet">
-        <string notr="true">QPushButton{
-	background-color: rgb(19, 38, 77);
-	color: rgb(183, 225, 161);
-   }
-
- QPushButton::hover {
-	background-color: rgb(181, 234, 170);
-	color: rgb(0, 0, 0);
-   }
-</string>
-       </property>
-       <property name="text">
-        <string>Save </string>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="1">
-      <widget class="QPushButton" name="setIntensity4_button">
-       <property name="styleSheet">
-        <string notr="true">QPushButton{
-	background-color: rgb(19, 38, 77);
-	color: rgb(183, 225, 161);
-   }
-
- QPushButton::hover {
-	background-color: rgb(181, 234, 170);
-	color: rgb(0, 0, 0);
-   }
-</string>
-       </property>
-       <property name="text">
-        <string>100%</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QComboBox" name="time_comboBox">
-    <property name="geometry">
-     <rect>
-      <x>320</x>
-      <y>110</y>
-      <width>111</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <property name="toolTipDuration">
-     <number>0</number>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QComboBox{
+        <string notr="true">QLineEdit{
 	background-color: rgb(19, 38, 77);
 	border-color: rgb(181, 234, 170);
 	border-width: 1px;
@@ -899,37 +452,22 @@ QLineEdit QAbstractItemView {
 	color: rgb(255, 255, 255);
 	padding: 1px 0px 1px 3px;
 }
-QComboBox QAbstractItemView {
+QLineEdit QAbstractItemView {
 	color: rgb(255, 255, 255);
             }</string>
-    </property>
-    <property name="currentText">
-     <string/>
-    </property>
-    <property name="placeholderText">
-     <string>Time Selection</string>
-    </property>
-    <item>
-     <property name="text">
-      <string>3 minutes</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>5 minutes</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>20 minutes</string>
-     </property>
-    </item>
+       </property>
+       <property name="text">
+        <string>00:00:00</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
    <widget class="QComboBox" name="step_comboBox">
     <property name="geometry">
      <rect>
-      <x>540</x>
-      <y>340</y>
+      <x>360</x>
+      <y>220</y>
       <width>161</width>
       <height>22</height>
      </rect>
@@ -956,7 +494,12 @@ QComboBox QAbstractItemView {
     </property>
     <item>
      <property name="text">
-      <string>+ Add New Procedure</string>
+      <string>+ Add Procedure</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>- Remove Procedure</string>
      </property>
     </item>
    </widget>
@@ -966,8 +509,8 @@ QComboBox QAbstractItemView {
     </property>
     <property name="geometry">
      <rect>
-      <x>410</x>
-      <y>310</y>
+      <x>190</x>
+      <y>190</y>
       <width>111</width>
       <height>24</height>
      </rect>
@@ -994,8 +537,8 @@ QComboBox QAbstractItemView {
    <widget class="QLineEdit" name="save_procedure_input">
     <property name="geometry">
      <rect>
-      <x>410</x>
-      <y>340</y>
+      <x>190</x>
+      <y>220</y>
       <width>111</width>
       <height>22</height>
      </rect>
@@ -1019,6 +562,231 @@ QLineEdit QAbstractItemView {
     </property>
     <property name="placeholderText">
      <string>Please Input Name</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>50</y>
+      <width>77</width>
+      <height>140</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QPushButton" name="ch1_button">
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	background-color: rgb(19, 38, 77);
+	color: rgb(183, 225, 161);
+   }
+QPushButton:checked {
+	background-color: rgb(181, 234, 170);
+    color: rgb(0, 0, 0);
+}
+ QPushButton::hover {
+	background-color: rgb(181, 234, 170);
+	color: rgb(0, 0, 0);
+   }
+
+</string>
+       </property>
+       <property name="text">
+        <string>CH1</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="ch2_button">
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	background-color: rgb(19, 38, 77);
+	color: rgb(183, 225, 161);
+   }
+QPushButton:checked {
+	background-color: rgb(181, 234, 170);
+    color: rgb(0, 0, 0);
+}
+ QPushButton::hover {
+	background-color: rgb(181, 234, 170);
+	color: rgb(0, 0, 0);
+   }
+</string>
+       </property>
+       <property name="text">
+        <string>CH2</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="ch3_button">
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	background-color: rgb(19, 38, 77);
+	color: rgb(183, 225, 161);
+   }
+QPushButton:checked {
+	background-color: rgb(181, 234, 170);
+    color: rgb(0, 0, 0);
+}
+ QPushButton::hover {
+	background-color: rgb(181, 234, 170);
+	color: rgb(0, 0, 0);
+   }
+</string>
+       </property>
+       <property name="text">
+        <string>CH3</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="ch4_button">
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	background-color: rgb(19, 38, 77);
+	color: rgb(183, 225, 161);
+   }
+QPushButton:checked {
+	background-color: rgb(181, 234, 170);
+    color: rgb(0, 0, 0);
+}
+ QPushButton::hover {
+	background-color: rgb(181, 234, 170);
+	color: rgb(0, 0, 0);
+   }
+</string>
+       </property>
+       <property name="text">
+        <string>CH4</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>640</x>
+      <y>10</y>
+      <width>81</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>Logo/logo.jpg</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="remove_procedure_button">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>190</y>
+      <width>111</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+	background-color: rgb(19, 38, 77);
+	color: rgb(183, 225, 161);
+   }
+
+ QPushButton::hover {
+	background-color: rgb(181, 234, 170);
+	color: rgb(0, 0, 0);
+   }
+</string>
+    </property>
+    <property name="text">
+     <string>Remove</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="remove_comboBox">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>220</y>
+      <width>111</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QComboBox{
+	background-color: rgb(19, 38, 77);
+	border-color: rgb(181, 234, 170);
+	border-width: 1px;
+    border-style: solid;
+	
+	color: rgb(255, 255, 255);
+	padding: 1px 0px 1px 3px;
+}
+QComboBox QAbstractItemView {
+	color: rgb(255, 255, 255);
+            }</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>100</y>
+      <width>111</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);
+font: 700 10pt &quot;Segoe UI&quot;;
+text-decoration: underline;</string>
+    </property>
+    <property name="text">
+     <string>Current Time</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="intensityDisplay">
+    <property name="geometry">
+     <rect>
+      <x>480</x>
+      <y>80</y>
+      <width>49</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+border-color: rgb(0, 0, 0);
+font: 16pt &quot;OCR A&quot;;
+color: rgb(255, 255, 255);
+}</string>
+    </property>
+    <property name="text">
+     <string>0</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
     </property>
    </widget>
   </widget>
